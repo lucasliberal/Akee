@@ -1,0 +1,344 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    font-size: 32px;
+    color: #E6423C;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p{
+    font-size: 18px;
+    color: #E6423C;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.background{
+    height: 100vh;
+    background-color: #D9D9D9;
+}
+
+/* ==== TELA HOME ==== */
+
+    /*==== BARRA SUPERIOR ====*/
+        .barra-superior{
+            height: fit-content;
+            background-color: #E6423C;
+            padding: 12px 30px;
+        }
+
+        /*Logo e nome do site*/
+        #logo_barra{
+            width: 80px;
+        }
+        #siteName{
+            position: relative;
+            font-size: 28px;
+            font-weight: 600;
+            width: fit-content;
+            color: #F3F3F3;
+            display: inline-block;
+            top: 10px;
+            text-decoration: none;
+        }
+
+        /*Campo buscar pessoas*/
+        #input-buscar-pessoas{
+            border: 0px;
+            font-size: 18px;
+            height: 50px;
+            width: 250px;
+            border-radius: 20px;
+            padding-left: 15px;
+            position: relative;
+            float: right;
+            margin-top: 14px;
+        }
+
+        /*Botao (lupa) pesquisa*/
+        #btn-pesquisa{
+            color: #E6423C;
+            font-size: 24px;
+            position: relative;
+            float: right;
+            left: 230px;
+            top: 25px;
+        }
+        #btn-pesquisa:hover{
+            color: #af322d;
+        }
+    /* ======== */
+
+
+    /* ==== PAINEL ESQUERDA ====*/
+        #painel-esquerda{
+            position: sticky;
+            height: 100vh;
+            border-right: 1px solid #E6423C;
+            top: 0;
+        }
+
+        /*Nome do usuario*/
+        #username{
+            border-bottom: 1px solid #E6423C;
+            padding-bottom: 30px;
+            margin-top: 30px;
+            font-size: 22px;
+            font-weight: 620;
+            color: #E6423C;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /*Container de informacoes*/
+        .campo-info{
+            display: inline-flex;
+            width: 100%;
+        }
+        
+        /*Informacoes do usuario*/
+        .user-info{
+            position: relative;
+            width: 95px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 400;
+            color: #E6423C;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0 auto;
+        }
+        .user-info>h5{
+            font-weight: 500;
+            font-size: 18px;
+        }
+    /* ======== */
+    
+
+    /* ==== POSTAGEM ====*/
+        /*Input postagem*/
+        .inputBox{
+            padding: 10px 30px;
+            font-size: 18px;
+            width: 500px;
+            height: 50px;
+            border: 2px solid #E6423C;
+            border-radius: 20px;
+        }
+
+        /*Botao postar*/
+        #btn_postar{
+            width: 80px;
+            height: 50px;
+            font-size: 18px;
+            color: #F3F3F3;
+            background-color: #E6423C;
+            border: 0px solid;
+            border-radius: 20px;
+            margin: auto 0;
+            margin-left: 10px;
+        }
+        #btn_postar:hover{
+            color: #F3F3F3;
+            border: 0px solid;
+            background-color: #af322d;
+            position: relative;
+        }
+
+        /*Container input + botao postar*/
+        #container-publicacao{
+            margin: 20px 0;
+            position: relative;
+            display: inline-flex;
+            height: fit-content;
+            width: fit-content;
+            left: 50%;
+            transform: translate(-50%);
+        }
+    /* ======== */
+
+
+    /* ==== CONTEUDO POSTAGEM ==== */
+        /*Autor da postagem*/
+        .list-group-item>#username{
+            font-size: 18px;
+            font-weight: 600;
+            color: #464646;
+            text-align: left;
+            margin: 0px;
+            padding: 10px 0;
+            border: 0;
+        }
+
+        /*conteudo da postagem*/
+        .list-group-item>p{
+            font-weight: normal;
+            color: #464646;
+        }
+    /* ======== */
+/* ======== */
+
+
+/* ==== TELA LOGIN e CADASTRO ==== */
+
+    @keyframes hide{
+        from {transform: translate(-50%, 0)}
+        to   {transform: translate(-50%, 58px)}
+    }
+
+    /*Mensagem de erro*/
+    .msg-erro-login{
+        background-color: #E6423C;
+        height: fit-content;
+        width: fit-content;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+        top: 114px;
+        padding: 10px 20px;
+        border-radius: 20px 20px 0 0;
+        animation: hide 2.5s 5s forwards;
+    }
+
+    .msg-erro-login>p{
+        color: #F3F3F3;
+        font-weight: 500;
+    }
+
+    /*Mensagem de erro*/
+    .msg-erro-registro{
+        background-color: #E6423C;
+        height: fit-content;
+        width: fit-content;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+        top: 78px;
+        padding: 10px 20px;
+        border-radius: 20px 20px 0 0;
+        animation: hide 2.5s 5s forwards;
+    }
+
+    .msg-erro-registro>p{
+        color: #F3F3F3;
+        font-weight: 500;
+    }
+
+    /*Logo do site*/
+    #logo{
+        width: 113px;
+        height: 113px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    /*Campo de texto*/
+    .textBox{
+        position: relative;
+        font-size: 18px;
+        height: 50px;
+        width: 250px;
+        margin: 0 auto;
+        border: 3px solid #E6423C;
+        border-radius: 20px;
+        padding-left: 15px;
+    }
+
+    .container-input{
+        width: fit-content;
+        margin-bottom: 20px;
+        display: flex;
+    }
+
+    #alerta{
+        width: fit-content;
+        height: fit-content;
+        font-size: 24px;
+        color: #E6423C;
+        margin: auto 0;
+        margin-left: 10px;
+    }
+
+    /*Modelo botao 1*/
+    .botao1{
+        text-decoration: none;
+        font-size: 18px;
+        width: 150px;
+        height: 50px;
+        color: #F3F3F3;
+        border: 0px solid;
+        border-radius: 40px;
+        background-color: #E6423C;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+        margin-top: 20px;
+    }
+    .botao1:hover{
+        text-decoration: none;
+        font-size: 18px;
+        width: 150px;
+        height: 50px;
+        color: #F3F3F3;
+        border: 0px solid;
+        border-radius: 40px;
+        background-color: #af322d;
+    }
+
+    /*Modelo botao 2*/
+    .botao2{
+        text-decoration: none;
+        font-size: 18px;
+        width: 130px;
+        height: 30px;
+        color: #E6423C;
+        border: 1px solid #E6423C;
+        border-radius: 40px;
+        background-color: #F3F3F3;
+        margin-left: 20px;
+    }
+    .botao2:hover{
+        text-decoration: none;
+        font-size: 18px;
+        width: 130px;
+        height: 30px;
+        color: #F3F3F3;
+        border: 0px solid #E6423C;
+        border-radius: 40px;
+        background-color: #E6423C;
+    }
+
+    /*Caixa dos campos de login e cadastro*/
+    .box{
+        width: 500px;
+        height: fit-content;
+        border: 9px solid rgba(64, 73, 107, 0.3);
+        position: absolute;
+        background-color: #F3F3F3;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 20px;
+        padding: 50px;
+    }
+
+    .campo1{
+        width: fit-content;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+
+    .campo2{
+        width: fit-content;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;    
+        display: flex;
+        margin-top: 50px;
+    }
+/* ======== */

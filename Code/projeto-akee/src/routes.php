@@ -25,11 +25,6 @@
             include_once 'frontend/register.php';
     }
 
-    else if ($page == 'erro-login'){
-        $erro = 1;
-        include_once 'frontend/login.php';
-    }
-
     else{  
         echo 'Página não encontrada';
     }

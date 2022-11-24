@@ -27,6 +27,6 @@
 		header('Location: ./home');
 	}
 	else{
-		header('Location: erro-login');
+		header('Location: ./&erro=1');
 	}
 ?>
