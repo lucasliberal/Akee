@@ -2,7 +2,7 @@
 	session_start();
 
 	if(!isset($_SESSION['usuario'])){
-		header('Location: erro-login');
+		header('Location: ./&erro=1');
 	}
 
 	$id_usuario = $_SESSION['id_usuario'];
@@ -15,33 +15,18 @@
 		"id_usuario" => $id_usuario, 
 	);
 
-	// recupera qtd de postagens
-	$init = curl_init('http://localhost/api-akeev2/user/info/num-posts');
+	// recupera qtd de postagens e seguidores
+	$init = curl_init('http://localhost/api-akeev2/user/info/numberOf');
 	curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($init, CURLOPT_POST, true);
 	curl_setopt($init, CURLOPT_POSTFIELDS, $inputData);
 	curl_exec($init);
 	$response = curl_multi_getcontent($init);
 	curl_close($init);	
-	$json = json_decode($response);
+	$json = json_decode($response, TRUE);
 
-	foreach($json->output as $output){
-		$qtd_posts = $output->qtd_posts;
-	}
-
-	// recuperar qtd de seguidores
-	$init = curl_init('http://localhost/api-akeev2/user/info/num-followers');
-	curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($init, CURLOPT_POST, true);
-	curl_setopt($init, CURLOPT_POSTFIELDS, $inputData);
-	curl_exec($init);
-	$response = curl_multi_getcontent($init);
-	curl_close($init);	
-	$json = json_decode($response);
-	
-	foreach($json as $output){
-		$qtd_seguidores = $output->qtd_followers;
-	}
+	$qtd_seguidores = $json['followers']['qtd_followers'];
+	$qtd_posts = $json['posts']['qtd_posts'];
 ?>
 
 <!DOCTYPE HTML>

@@ -18,15 +18,16 @@
 	$content = curl_multi_getcontent($init);
 	curl_close($init);	
 
-	$auth = json_decode($content);
+	$auth = json_decode($content,TRUE);
 
-	if(isset($auth->user)){
-		$_SESSION['id_usuario'] = $auth->user->id;			
-		$_SESSION['usuario'] = $auth->user->usuario;
-		$_SESSION['email'] = $auth->user->email;
+	if(isset($auth['user'])){
+		$_SESSION['id_usuario'] = $auth['user']['id'];			
+		$_SESSION['usuario'] = $auth['user']['usuario'];
+		$_SESSION['email'] = $auth['user']['email'];
 		header('Location: ./home');
 	}
 	else{
 		header('Location: ./&erro=1');
 	}
+	
 ?>

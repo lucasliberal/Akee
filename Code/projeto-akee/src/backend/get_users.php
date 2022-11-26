@@ -2,7 +2,7 @@
 	session_start();
 
 	if(!isset($_SESSION['usuario'])){
-		header('Location: erro-login');
+		header('Location: ./&erro=1');
 	}
 
 	$nome_pessoa = $_POST['nome_pessoa'];
@@ -22,17 +22,17 @@
 	$content = curl_multi_getcontent($init);
 	curl_close($init);	
 
-	$json = json_decode($content);
+	$json = json_decode($content,TRUE);
 
-	$users = $json->users;
+	$users = $json['users'];
 
 	if($users != null){
-		foreach($users as $usuarios){
+		foreach($users as $usuario){
 			echo ' <a href="#" class="list-group-item"> ';
-				echo '<strong>'.$usuarios->usuario.'</strong> <small> - '.$usuarios->email.' </small>';
+				echo '<strong>'.$usuario['usuario'].'</strong> <small> - '.$usuario['email'].' </small>';
 				echo'<p class="list-group-item-text pull-right">';
 
-					$esta_seguindo_usuario_sn = isset($usuarios->id_usuario_seguidor) && !empty($usuarios->id_usuario_seguidor) ? 'S' : 'N';
+					$esta_seguindo_usuario_sn = isset($usuario['id_usuario_seguidor']) && !empty($usuario['id_usuario_seguidor']) ? 'S' : 'N';
 					$btn_seguir_display = 'block';
 					$btn_deixar_seguir_display = 'block';
 
@@ -42,9 +42,9 @@
 						$btn_seguir_display = 'none';
 					}
 
-					echo '<button type="button" id="btn_seguir_'.$usuarios->id.'" style="display: '.$btn_seguir_display.'" class="btn btn-default btn_seguir" data-id_usuario="'.$usuarios->id.'">Seguir</button>';
+					echo '<button type="button" id="btn_seguir_'.$usuario['id'].'" style="display: '.$btn_seguir_display.'" class="btn btn-default btn_seguir" data-id_usuario="'.$usuario['id'].'">Seguir</button>';
 
-					echo '<button type="button" id="btn_deixar_seguir_'.$usuarios->id.'" style="display: '.$btn_deixar_seguir_display.'" class="btn btn-primary btn_deixar_seguir" data-id_usuario="'.$usuarios->id.'">Deixar de seguir</button>';
+					echo '<button type="button" id="btn_deixar_seguir_'.$usuario['id'].'" style="display: '.$btn_deixar_seguir_display.'" class="btn btn-primary btn_deixar_seguir" data-id_usuario="'.$usuario['id'].'">Deixar de seguir</button>';
 				echo'</p>';
 				echo '<div class="clearfix"></div>';
 			echo ' </a >';

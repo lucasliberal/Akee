@@ -4,15 +4,13 @@
     $usuario = $_POST['usuario']; 
     $senha =  md5($_POST['senha']);
 
-    $sql = "SELECT id, usuario, email FROM usuarios WHERE usuario='$usuario' AND senha='$senha'";
     $db = db::connect_users_db();
-    //$response = $db->prepare("SELECT id, usuario, email FROM usuarios WHERE usuario='$usuario' AND senha='$senha'");
-    //$response ->execute();
-    $response = mysqli_query($db, $sql);
+    $response = $db->prepare("SELECT id, usuario, email FROM usuarios WHERE usuario='$usuario' AND senha='$senha'");
+    $response ->execute();
 
     if($response){
-        $dados_usuario = mysqli_fetch_assoc($response);
-        //$dados_usuario = $response->fetchAll(PDO::FETCH_ASSOC);
+
+        $dados_usuario = $response->fetch();
 
         if(isset($dados_usuario['usuario'])){
             echo json_encode(["erro"=>'false', "user" => $dados_usuario]);

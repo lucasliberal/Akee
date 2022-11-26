@@ -17,15 +17,9 @@
 			$pass = '';
 			$base = 'akee_users';
 
-			$conexao = mysqli_connect($host, $user, $pass, $base);
-
-			mysqli_set_charset($conexao, 'utf8');
-
-			if(mysqli_connect_errno()){
-				echo 'Erro ao tentar se conectar com o BD MySQL: '.mysqli_connect_error();
-			}
-
-			return $conexao;
+			return new PDO("mysql: host={$host};
+			dbname={$base};
+			charset=UTF8;", $user, $pass);	
 		}
 	}
-?>
+?> 

@@ -8,12 +8,13 @@
     $usuario_existe = false;
     $email_existe = false;
 
-    $db = DB::connect_users_db();
+    $db = db::connect_users_db();
 
     //Verifica se usuario existe
-    $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario'";
-    if($resultado_id = mysqli_query($db, $sql)){
-        $dados_usuario = mysqli_fetch_array($resultado_id);
+    $response = $db->prepare("SELECT * FROM usuarios WHERE usuario = '$usuario'");
+    $response->execute();
+    if($response){
+        $dados_usuario = $response->fetch();
         if(isset($dados_usuario['usuario'])){
             $usuario_existe = true;
         }
@@ -22,9 +23,10 @@
     }
 
     //verificar se o email ja existe
-    $sql = "SELECT * FROM usuarios WHERE email = '$email' ";
-    if($resultado_id = mysqli_query($db, $sql)){
-        $dados_usuario = mysqli_fetch_array($resultado_id);
+    $response = $db->prepare("SELECT * FROM usuarios WHERE email = '$email'");
+    $response ->execute();
+    if($response){
+        $dados_usuario = $response->fetch();
         if(isset($dados_usuario['email'])){
             $email_existe = true;
         }
@@ -48,8 +50,7 @@
 
     //Inserir no BD
     $response = $db->prepare("INSERT INTO usuarios(usuario, email, senha) VALUES ('$usuario', '$email', '$senha')");
-    $sql = "INSERT INTO usuarios(usuario, email, senha) VALUES ('$usuario', '$email', '$senha') ";
-    if(mysqli_query($db, $sql)){
+    if($response->execute()){
         echo json_encode(["erro" => null, "message" => 'Conta criada com sucesso.']);
     } else {
         echo json_encode(["erro" => 'conta_nao_criada', "message" => 'Erro ao tentar criar conta.']);

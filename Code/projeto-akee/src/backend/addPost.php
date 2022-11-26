@@ -2,7 +2,7 @@
 	session_start();
 
 	if(!isset($_SESSION['usuario'])){
-		header('Location: erro-login');
+		header('Location: ./&erro=1');
 	}
 
 	$texto_post = $_POST['texto_post'];

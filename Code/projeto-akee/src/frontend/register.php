@@ -1,6 +1,8 @@
 <?php
 	$erro_usuario 	= isset($_GET['erro_usuario'])	? $_GET['erro_usuario'] : 0;
 	$erro_email		= isset($_GET['erro_email']) 	? $_GET['erro_email'] 	: 0;
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -20,23 +22,23 @@
     <div class="background">
         <?php
             if($erro_email && $erro_usuario == 1){
-                echo '<div class="msg-erro-registro">';
+                echo '<div class="msg-error">';
                 echo '<p>Usuário e E-mail já cadastrados!</p>';
                 echo '</div>';
             }
-            if($erro_usuario == 1){
-                echo '<div class="msg-erro-registro">';
+            else if($erro_usuario == 1){
+                echo '<div class="msg-error">';
                 echo '<p>Usuário já cadastrado!</p>';
                 echo '</div>';
             }
-            if($erro_email == 1){
-                echo '<div class="msg-erro-registro">';
+            else if($erro_email == 1){
+                echo '<div class="msg-error">';
                 echo '<p>E-mail já cadastrado!</p>';
                 echo '</div>';
             }
         ?>
 
-        <div class="box">
+        <div class="box" style="">
             <img id="logo" src="imagens\logo_transparent.png" alt="logomarca">
             <div class="campo1">
                 <h1>Cadastre-se</h1>

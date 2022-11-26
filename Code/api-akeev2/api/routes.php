@@ -24,6 +24,9 @@
         if ($action == 'unfollow'){
             include_once 'usuario/unfollow.php';
         }
+        if ($action == 'list'){
+            include_once 'usuario/get.php';
+        }
     }else {
         echo 'endereco invalido.';
     }

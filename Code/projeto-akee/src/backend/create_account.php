@@ -1,7 +1,7 @@
 <?php 
 	$usuario = $_POST['usuario'];
 	$email = $_POST['email'];
-	$senha = md5($_POST['senha']);
+	$senha = $_POST['senha'];
 
 	$init = curl_init('http://localhost/api-akeev2/user/create-account');
 	curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
@@ -21,8 +21,10 @@
 	$response = json_decode($content);
 	
 	if($response->erro == null){
-		header('Location: ./');
-	}
+		//CONTA CRIADA COM SUCESSO
+		header('Location: ./&msg=successful');
+		}
+
 	if(isset($response->erro)){
 		if($response->erro == 'conta_existe'){
 			header('Location: ./signin&'.$response->message);
@@ -31,7 +33,7 @@
 			echo $response->message;
 		}
 		if($response->erro == 'erro_db'){
-			echo $response->message;
+			header('Location: ./&msg=erro');
 		}
 	}
 ?>

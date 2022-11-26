@@ -1,7 +1,7 @@
 <?php
 	require_once('./classes/db.class.php');
 
-	if ($action == 'list' && $param == ''){
+	if ($param == ''){
 		//lista todas as postagens
 		$db = DB::connect_users_db();
 		$rs = $db->prepare("SELECT id, usuario, email, senha FROM usuarios;");
@@ -15,7 +15,7 @@
 		}
 	}
     
-    if ($action == 'list' && $param != '') {
+    if ($param != '') {
 		//lista apenas postagens de determinado usuário
 		$db = DB::connect_users_db();
 		$rs = $db->prepare("SELECT id, usuario, email, senha FROM usuarios WHERE id={$param};");

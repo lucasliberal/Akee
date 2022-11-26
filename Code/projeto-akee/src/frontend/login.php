@@ -1,5 +1,6 @@
 <?php 
 	$erro = isset($_GET['erro']) ? $_GET['erro'] : 0;
+    $mensagem = isset($_GET['msg']) ? $_GET['msg'] : 0; 
 ?>
 
 <!DOCTYPE html>
@@ -18,22 +19,35 @@
 <body>
     <div class="background">
         <?php
+            /* ERRO LOGIN INVÁLIDO */
             if($erro == 1){
-                echo '<div class="msg-erro-login">';
+                echo '<div class="msg-error">';
                 echo '<p>Usuário ou Senha inválidos!</p>';
                 echo '</div>';
             }
+
+            /* MENSAGENS AO CRIAR CONTA */
+            if($mensagem == 'successful'){
+                echo '<div class="msg-success">';
+                echo "<p>Conta criada com sucesso!</p>";
+                echo '</div>';
+            }
+            if($mensagem == 'erro'){
+                echo '<div class="msg-error">';
+                echo "<p>Erro interno, tente mais tarde!</p>";
+                echo '</div>';
+            }
         ?>
-        <div class="box">
+        <div class="box" style="">
             <img id="logo" src="imagens\logo_transparent.png" alt="logomarca">
             <div class="campo1">
                 <h1>Login</h1>
                 <form method="post" action="" id="formLogin">
                     <div class="container-input">
-                        <input class="textBox" type="usuario" id="usuario" name="usuario" placeholder="Usuário">
+                        <input class="textBox" type="usuario" id="usuario" name="usuario" placeholder="Usuário" required="required">
                     </div> 
                     <div class="container-input">
-                        <input class="textBox" type="password" id="senha" name="senha" placeholder="Senha">
+                        <input class="textBox" type="password" id="senha" name="senha" placeholder="Senha" required="required">
                     </div>
                     <input class="botao1" type="submit" value="Entrar">
                 </form>

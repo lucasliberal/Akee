@@ -2,7 +2,7 @@
 	session_start();
 
 	if(!isset($_SESSION['usuario'])){
-		header('Location: erro-login');
+		header('Location: ./&erro=1');
 	}
 	$id_usuario = $_SESSION['id_usuario'];
 
@@ -23,8 +23,9 @@
 		curl_exec($init);
 		$content = curl_multi_getcontent($init);
 		curl_close($init);	
-		$json = json_decode($content);
-		$username = $json->usuario;
+		$json = json_decode($content, TRUE);
+
+		$username = $json['usuario'];
 
 		if($postagem->id_usuario == $id_usuario){
 			echo ' <a href="#" class="list-group-item"> ';
@@ -47,10 +48,10 @@
 			curl_exec($init);
 			$content = curl_multi_getcontent($init);
 			curl_close($init);	
-			$isFollowed = json_decode($content);	
+			$isFollowed = json_decode($content, TRUE);
 
 			//Mostra a postagem se o usuario autenticado segue o usuario que fez a postagem
-			if (isset($isFollowed)){
+			if (isset($isFollowed['isFollowed'])){
 				echo ' <a href="#" class="list-group-item"> ';
 				echo ' <h4 class="list-group-item-heading">'.$username.' <small> - '.$postagem->data_inclusao.'</small></h4> ';
 				echo '<p class="list-group-item-text">'.$postagem->conteudo.'</p>';

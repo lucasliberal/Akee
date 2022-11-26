@@ -1,5 +1,0 @@
-v1 - Criação do sistema
-v2 - 
-v3 - 
-v4 - 
-v5 - API passa a fornecer todos os dados para o sistema   
