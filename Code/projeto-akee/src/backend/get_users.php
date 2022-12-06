@@ -29,7 +29,7 @@
 	if($users != null){
 		foreach($users as $usuario){
 			echo ' <a href="#" class="list-group-item"> ';
-				echo '<strong>'.$usuario['usuario'].'</strong> <small> - '.$usuario['email'].' </small>';
+				echo '<h4 id="usuario_nome">'.$usuario['usuario'].'<small> - '.$usuario['email'].' </small></h4>';
 				echo'<p class="list-group-item-text pull-right">';
 
 					$esta_seguindo_usuario_sn = isset($usuario['id_usuario_seguidor']) && !empty($usuario['id_usuario_seguidor']) ? 'S' : 'N';
@@ -42,16 +42,16 @@
 						$btn_seguir_display = 'none';
 					}
 
-					echo '<button type="button" id="btn_seguir_'.$usuario['id'].'" style="display: '.$btn_seguir_display.'" class="btn btn-default btn_seguir" data-id_usuario="'.$usuario['id'].'">Seguir</button>';
+					echo '<button type="button" id="btn_seguir_'.$usuario['id'].'" style="display: '.$btn_seguir_display.'" class="btn_seguir" data-id_usuario="'.$usuario['id'].'">Seguir</button>';
 
-					echo '<button type="button" id="btn_deixar_seguir_'.$usuario['id'].'" style="display: '.$btn_deixar_seguir_display.'" class="btn btn-primary btn_deixar_seguir" data-id_usuario="'.$usuario['id'].'">Deixar de seguir</button>';
+					echo '<button type="button" id="btn_deixar_seguir_'.$usuario['id'].'" style="display: '.$btn_deixar_seguir_display.'" class="btn_deixar_seguir" data-id_usuario="'.$usuario['id'].'">Deixar de seguir</button>';
 				echo'</p>';
 				echo '<div class="clearfix"></div>';
 			echo ' </a >';
 		}
 
 	}else{
-		echo 'Usuario nao encontrado';
+		echo '<p id="output-userNotFound">Usuário não encontrado</p>';
 	}
 ?>
 

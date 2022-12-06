@@ -28,39 +28,40 @@
 	$qtd_posts = $json['posts']['qtd_posts'];
 ?>
 
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
 
-		<title>Akee - Home</title>
-		
-		<!-- jquery - link cdn -->
+    <!-- jquery - link cdn -->
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
-		<!-- bootstrap - link cdn -->
+    <!-- bootstrap - link cdn -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="src\style\style.css" />
+		<link rel="stylesheet" href="src\style\style.css">
 
-
-		<script type="text/javascript">
+        <script type="text/javascript">
+            function auto_grow(element) {
+                element.style.height = "50px";
+                element.style.height = ((element.scrollHeight)+5)+"px";
+            }
 
 			$(document).ready(function(){
-
-				$('#btn_post').click(function(){
-					if($('#texto_post').val().length > 0){
+				$('#btn_postar').click(function(){
+					if($('#input-post').val().length > 0){
 						
 						$.ajax({
 							url: 'src/backend/addPost.php',
 							method: 'post',
-							data: $('#form_post').serialize(),
+							data: $('#input-form').serialize(),
 							success: function(data){
-								$('#texto_post').val('');
+								$('#input-post').val('');
 								atualizaPost(); 
 							} 
 						});
 					}
-
 				});
 
 				function atualizaPost(){
@@ -74,78 +75,51 @@
 
 				atualizaPost();
 			});
+        </script>
 
-		</script>
-	</head>
-	<body>
+    </head>
+<body>
 
-		<!-- Static navbar -->
-	    <nav class="navbar navbar-default navbar-static-top">
-	      <div class="container">
-	        <div class="navbar-header">
-	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	            <span class="sr-only">Toggle navigation</span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-	          <img id="logo_home" src="imagens/logo_transparent.png" />
-	        </div>
-	        
-	        <div id="navbar" class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav navbar-right">
-	            <li><a href="./logout">Sair</a></li>
-	          </ul>
-	        </div><!--/.nav-collapse -->
-	      </div>
-	    </nav>
-	    <div class="container">
-	    	<!-- painel da esquerda -->
-	    	<div class="col-md-3">
-	    		<div class="panel panel-default">
-	    			<div class="panel-body">
-	    				<h4><?= $_SESSION['usuario'] ?></h4>
+    <div class="barra-superior">
+        <img id="logo-navbar" src="imagens\logo_transparent_branco.png" alt="Logomarca akee">
+        <a href="" id="siteName">AKEE</a>
+        <a class="glyphicon glyphicon-log-out" style="text-decoration: none;" id="btn-sair" href="./logout"><p>Sair</p></a>
+		<a class="glyphicon glyphicon-search" style="text-decoration: none;" id="btn-buscar" href="./search"><p>Buscar</p></a>
+    </div>
 
-	    				<hr />
-	    				<div class="col-md-6">
-	    					POSTAGENS <br/> <?= $qtd_posts ?>
-	    				</div>
-	    				<div class="col-md-6">
-	    					SEGUIDORES <br/> <?= $qtd_seguidores ?>
-	    				</div>
-	    			</div>
-	    		</div>
-	    	</div>
+    <div class="container">
+        <!-- painel da esquerda -->
+        <div class="col-md-3" id="painel-esquerda">
+            <h4 id="username" ><?= $_SESSION['usuario'] ?></h4>
+            <div class="campo-info">
+                <div class="user-info">
+                    <h5>Postagens</h5>
+                    <p><?= $qtd_posts ?></p>
+                </div>
+                
+                <div class="user-info">
+                    <h5>Seguidores</h5>
+                    <p><?= $qtd_seguidores ?></p>
+                </div>
+            </div>
+        </div>
 
-	    	<!-- painel central -->
-	    	<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<form id="form_post" class="input-group">
-							<input type="text" id="texto_post" name="texto_post" class="form-control" placeholder="O que está acontecendo agora?" maxlength="140" />
-							<span class="input-group-btn">
-								<button class="btn btn-default" id="btn_post" type="button">Publicar</button>
-							</span>
-						</form>
-					</div>
+        <!-- painel central -->
+        <div class="col-md-9">
+            <div class="panel-body">
+				<form class="input-form" class="input-group">
+					<textarea type="text" oninput="auto_grow(this)" id="input-post" name="input-post" class="inputBox" placeholder="O que está acontecendo agora?" maxlength="140"></textarea>
+					<button id="btn_postar" type="button">Postar</button>
+				</form>
+            </div>
 
-					<div id="posts" class="list-group"></div>
+            <div id="posts" class="list-group"></div>
+        </div>
 
-				</div>
-			</div>
+    </div>
+    </div>
 
-			<!-- painel da direita -->
-			<div class="col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<h4><a href="./search">Procurar por pessoas</a></h4>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	    </div>
-	
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	</body>
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
 </html>

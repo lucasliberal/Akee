@@ -18,8 +18,8 @@
 			$base = 'akee_users';
 
 			return new PDO("mysql: host={$host};
-			dbname={$base};
-			charset=UTF8;", $user, $pass);	
+							dbname={$base};
+							charset=UTF8;", $user, $pass);	
 		}
 	}
 ?> 

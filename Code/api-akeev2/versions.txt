@@ -1,0 +1,3 @@
+v1 - Criação da api
+v2 - Criar conexão com BD usuarios
+v3 - teste

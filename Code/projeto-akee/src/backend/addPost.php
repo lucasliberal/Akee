@@ -5,7 +5,7 @@
 		header('Location: ./&erro=1');
 	}
 
-	$texto_post = $_POST['texto_post'];
+	$input_post = $_POST['input-post'];
 	$id_usuario = $_SESSION['id_usuario'];
 
 	$init = curl_init('http://localhost/api-akeev2/posts/add');
@@ -13,7 +13,7 @@
 	curl_setopt($init, CURLOPT_RETURNTRANSFER, true);
 
 	$dados = array(
-		"postagem" => $texto_post, 
+		"postagem" => $input_post, 
 		"id_usuario" => $id_usuario
 	);
 

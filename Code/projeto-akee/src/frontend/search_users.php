@@ -33,21 +33,19 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8">
-
 		<title>Akee - Buscar usuários</title>
-		
 		<!-- jquery - link cdn -->
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
 		<!-- bootstrap - link cdn -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="src\style\style.css">
 
 		<script type="text/javascript">
 
 			$(document).ready(function(){
 
-				$('#btn_procurar_pessoa').click(function(){
-					if($('#nome_pessoa').val().length > 0){
+				$('#btn-pesquisar').click(function(){
+					if($('#input-busca').val().length > 0){
 						
 						$.ajax({
 							url: 'src/backend/get_users.php',
@@ -100,73 +98,49 @@
 
 	<body>
 
-		<!-- Static navbar -->
-	    <nav class="navbar navbar-default navbar-static-top">
-	      <div class="container">
-	        <div class="navbar-header">
-	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	            <span class="sr-only">Toggle navigation</span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-	          <img src="imagens/logo_transparent.png" />
-	        </div>
-	        
-	        <div id="navbar" class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav navbar-right">
-	          	<li><a href="home">Home</a></li>
-	            <li><a href="./logout">Sair</a></li>
-	          </ul>
-	        </div><!--/.nav-collapse -->
-	      </div>
-	    </nav>
-	    <div class="container">
-	    	<!-- painel da esquerda -->
-	    	<div class="col-md-3">
-	    		<div class="panel panel-default">
-	    			<div class="panel-body">
-	    				<h4><?= $_SESSION['usuario'] ?></h4>
+    <div class="barra-superior">
+        <img id="logo-navbar" src="imagens\logo_transparent_branco.png" alt="Logomarca akee">
+        <a href="./home" id="siteName">AKEE</a>
+        <a class="glyphicon glyphicon-log-out" style="text-decoration: none;" id="btn-sair" href="./logout"><p>Sair</p></a>
+        <a class="glyphicon glyphicon-home" style="text-decoration: none;" id="btn-home" href="./home"><p>Início</p></a>
+    </div>
 
-	    				<hr />
-	    				<div class="col-md-6">
-	    					POSTAGENS <br/> <?= $qtd_posts ?>
-	    				</div>
-	    				<div class="col-md-6">
-	    					SEGUIDORES <br/> <?= $qtd_seguidores ?>
-	    				</div>
-	    			</div>
-	    		</div>
-	    	</div>
+    <div class="container">
+        <!-- painel da esquerda -->
+        <div class="col-md-3" id="painel-esquerda">
+            <h4 id="username" ><?= $_SESSION['usuario'] ?></h4>
+            <div class="campo-info">
+                <div class="user-info">
+                    <h5>Postagens</h5>
+                    <p><?= $qtd_posts ?></p>
+                </div>
+                
+                <div class="user-info">
+                    <h5>Seguidores</h5>
+                    <p><?= $qtd_seguidores ?></p>
+                </div>
+            </div>
+        </div>
 
-	    	<!-- painel central -->
-	    	<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<form id="form_procurar_pessoas" class="input-group">
-							<input type="text" id="nome_pessoa" name="nome_pessoa" class="form-control" placeholder="Quem você está procurando?" maxlength="140" />
-							<span class="input-group-btn">
-								<button class="btn btn-default" id="btn_procurar_pessoa" type="button">Procurar</button>
-							</span>
-						</form>
-					</div>
+        <!-- painel central -->
+        <div class="col-md-9">
+            <div class="panel-body">
+                <div id="container-publicacao">
+					<form id="form_procurar_pessoas" class="input-form" method="post">
+						<input type="text" id="input-busca" name="nome_pessoa" class="inputBox" placeholder="Quem você está procurando?" maxlength="23"></input>
+                    	<button id="btn-pesquisar" type="button">Procurar</button>
+					</form> 
+                </div>
+            </div>
+            <div id="pessoas" class="list-group">
+                
+            </div>
+        </div>
 
-					<div id="pessoas" class="list-group"></div>
+    </div>
+    </div>
 
-				</div>
-			</div>
-
-			<!-- painel da direita -->
-			<div class="col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body">
-					</div>
-				</div>
-			</div>
-
-		</div>
-	    </div>
-	
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
 </html>
